@@ -1,0 +1,11 @@
+https://jarroba.com/multitarea-e-hilos-en-java-con-ejemplos-thread-runnable/
+http://profesores.elo.utfsm.cl/~agv/elo330/2s10/lectures/Java/threads/JavaThreads.html
+https://www.binarykode.com/bdescargas/Manuales%20y%20Documentos/JAVA/Interfaces%20de%20Usuario/Tutorial%20JAVA%20avanzado%20(I)/swing/threads.html#rule
+https://www.youtube.com/watch?v=hIFD8zrevm4   //barra
+https://www.youtube.com/watch?v=OUWb4iSWJeA   //barra sencilla
+https://www.youtube.com/watch?v=vtTUKLE_SWE   //proyecto completo
+https://www.youtube.com/watch?v=TjcqR-twOXw   //explicación
+https://www.youtube.com/watch?v=HIz3hS9AU-s  //animacion animalitos
+https://www.youtube.com/watch?v=HIz3hS9AU-s  //pelotas
+https://www.youtube.com/watch?v=iWJltU18JlI  //lineas
+https://www.youtube.com/watch?v=7DZLPRYNRno  //mas pelotitas
