@@ -301,7 +301,8 @@ public class Principal extends javax.swing.JFrame {
     private void btnBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaActionPerformed
        //busqueda por la columna, nombre del medicamento
        RowFilter filtro = RowFilter.regexFilter(textBusqueda.getText(), 0); 
-       sorter.setRowFilter(filtro);
+  
+               sorter.setRowFilter(filtro);
     }//GEN-LAST:event_btnBusquedaActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed

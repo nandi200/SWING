@@ -32,6 +32,7 @@ public class pbHandler extends Thread{
     }
     public void run(){
      while(life){
+         System.out.print("");
          if(order==1){
              System.out.println("Hilo esta corriendo .." + this.getProg());
              this.setProg(this.getProg() + 1);
