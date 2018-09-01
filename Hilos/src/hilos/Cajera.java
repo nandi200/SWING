@@ -40,7 +40,8 @@ public class Cajera {
 		try {
 			Thread.sleep(segundos * 1000);   //espera los segundos para continuar
 		} catch (InterruptedException ex) {
-			Thread.currentThread().interrupt();
+			ex.printStackTrace();
+                        System.out.println("Error esperarXsegundos ....");
 		}
 	}
 

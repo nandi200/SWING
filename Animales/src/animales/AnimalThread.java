@@ -19,14 +19,14 @@ public class AnimalThread extends Thread {
 
     private String nombre;
     private int limite;
-
-    public AnimalThread(String nombre, int limite) {
+            
+    public AnimalThread(String nombre, int limite) { //constructor de la clase
         this.nombre = nombre;
         this.limite = limite;
     }
 
-    @Override
-    public void run() {
+    @Override  //sobre escribe el método run()
+    public void run() {  //el método que quiero procesar con un hilo
         for (int i = 0; i < limite; i++) {
                 System.out.println(nombre + " avanza");
         }

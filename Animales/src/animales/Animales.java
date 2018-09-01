@@ -19,7 +19,7 @@ public class Animales {
         AnimalThread tortuga = new AnimalThread("tortuga",100);
         AnimalThread zorro = new AnimalThread("zorro",100);
        
-        conejo.start();
+        conejo.start();  //inicializa el hilo
         tortuga.start();
         zorro.start();
         System.out.println("Se ha terminado la carrera");
