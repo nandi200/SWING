@@ -16,21 +16,14 @@ import javax.swing.table.TableRowSorter;
  * @author erandi
  */
 public class Principal extends javax.swing.JFrame {
-    //datos de la primera tabla
-    String[] columna = {"Nombre", "Precio"};
-    String[][] registros = {{"panadol", "0.50"},{"dolofan", "0.80"},  {"bismutol", "1.20"},
-    {"Mejoral", "1.50"}, {"Fortex", "2.50"},  {"Antalgina", "0.70"}, {"Calcibon", "5.00"} };
-    //columna de la segunda  tabla
-     String []col= {"Nombre", "Precio","Cantidad","Total"};
-
     //modelo que contendra los datos de la primera tabla
     DefaultTableModel modelo1 = new DefaultTableModel();
     //ordenador de filas para la  tabla
-    TableRowSorter sorter = new TableRowSorter(modelo1);
+    TableRowSorter sorter ;
     
     
     //datos de la segunda tabla
-     DefaultTableModel modelo2 = new DefaultTableModel();  //para el otra pestalla
+     DefaultTableModel modelo2 = new DefaultTableModel(); //para el otra pestalla
     
     public Principal() {
         initComponents();
@@ -40,16 +33,17 @@ public class Principal extends javax.swing.JFrame {
         jTabbedPane1.setIconAt(0, imagen); //número de pestaña
         jTabbedPane1.setIconAt(1, imagen);
         
-        //añade datos al modelo
-        modelo1.setDataVector(registros, columna);
-        //indicar que el modelo lo debe usar la tabla
+        Carga datos = new Carga();
+        modelo1=datos.cargaProductosFarmacia();
         jTable1.setModel(modelo1);
-        //indicar que el ordenador de filas debe ser usado en la tabla
+        
+        sorter = new TableRowSorter(modelo1);
         jTable1.setRowSorter(sorter);
         
         //asigna el modelo y las columnas a la tabla 2
         jTable2.setModel(modelo2);
-        modelo2.setColumnIdentifiers(col);
+        
+        modelo2.setColumnIdentifiers(datos.cargaNombreCol());
     }
 
     /**
@@ -189,6 +183,11 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
+        jTable2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable2PropertyChange(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jPanel4.setForeground(new java.awt.Color(204, 204, 255));
@@ -307,14 +306,17 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         //calcula lo que hay que pagar
-        double precio;
+       double precio;
         int cantidad;
+        boolean generico;
         double total=0, total1=0;
         DecimalFormat df = new DecimalFormat("#.##");
         for (int i = 0; i < jTable2.getRowCount(); i++) {  //recorre la tabla2
                              //.getValueAt(fila,columna)               
             precio=Double.parseDouble(jTable2.getValueAt(i,1).toString());
             cantidad =Integer.parseInt(jTable2.getValueAt(i,2).toString());
+            
+            
             total=cantidad*precio;
             //manda el total a la celda de total
             jTable2.setValueAt(df.format(total), i,3);
@@ -330,9 +332,11 @@ public class Principal extends javax.swing.JFrame {
         //agrega elementos al carrito      
                             //captura la fila seleccionada (producto y precio)
                             // fila, columna                             
-        String [] datos ={jTable1.getValueAt(jTable1.getSelectedRow(),0).toString(),
-        jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()
-        }; 
+        Object [] datos ={jTable1.getValueAt(jTable1.getSelectedRow(),0).toString(),
+        jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()  }; 
+        
+        Boolean generico =Boolean.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),2).toString());
+        System.out.println("generico" + generico);
         //paso la fila seleccionada a la tabla 2
         modelo2.addRow(datos);
         
@@ -345,6 +349,10 @@ public class Principal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void jTable2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable2PropertyChange
+
+    }//GEN-LAST:event_jTable2PropertyChange
 
     /**
      * @param args the command line arguments

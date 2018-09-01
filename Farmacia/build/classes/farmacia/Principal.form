@@ -247,6 +247,9 @@
                       <Table columnCount="0" rowCount="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jTable2PropertyChange"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
