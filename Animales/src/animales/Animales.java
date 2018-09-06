@@ -7,7 +7,8 @@ package animales;
 
 /**
  *
- * @author erand
+ * @author erandi
+ * 
  */
 public class Animales {
 

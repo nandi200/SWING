@@ -18,11 +18,13 @@ public class AnimalAThread extends Thread {
 private String nombre;
 private int limite;
 private JLabel label;
+private int retardo;
 
-public AnimalAThread(String nombre, int limite, JLabel label){
+public AnimalAThread(String nombre, int limite, JLabel label, int retardo){
     this.nombre=nombre;
     this.limite=limite;
     this.label=label;
+    this.retardo=retardo;
 }
 @Override
 public void run(){
@@ -30,7 +32,7 @@ public void run(){
         try {
             System.out.println(nombre + " avanza");
             label.setLocation(i, 0);
-            Thread.sleep(100);
+            Thread.sleep(retardo);
         } catch (InterruptedException ex) {
             Logger.getLogger(AnimalAThread.class.getName()).log(Level.SEVERE, null, ex);
         }

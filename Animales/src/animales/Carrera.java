@@ -20,14 +20,15 @@ public class Carrera extends javax.swing.JFrame {
     public Carrera() {
         initComponents();
         
-        ImageIcon icon = new ImageIcon (getClass().getResource("/imagenes/conejito.png"));
-         //ImageIcon tamaño = new ImageIcon(icon.getImage().getScaledInstance(5, 5, 1));
-     //  ImageIcon imageIcon = new ImageIcon(new ImageIcon("/imagenes/conejo.gif").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+      //  ImageIcon icon = new ImageIcon (getClass().getResource("/imagenes/conejo2.gif"));
+      //  ImageIcon tamaño = new ImageIcon(icon.getImage().getScaledInstance(5, 5, 1));
+       ImageIcon icon = new ImageIcon(new ImageIcon("/imagenes/conejo2.gif").getImage().getScaledInstance(35, 35, Image.SCALE_REPLICATE));
+    
         labelConejo.setIcon(icon);
-         ImageIcon icon2 = new ImageIcon (getClass().getResource("/imagenes/jirafa.png"));
-       //  ImageIcon tamaño2 = new ImageIcon(icon2.getImage().getScaledInstance(5, 5, 1));
+         ImageIcon icon2 = new ImageIcon (getClass().getResource("/imagenes/tortuga2.gif"));
+        ImageIcon tamaño2 = new ImageIcon(icon2.getImage().getScaledInstance(5, 5, 1));
          labelTortuga.setIcon(icon2);
-         ImageIcon icon3 = new ImageIcon (getClass().getResource("/imagenes/zorrito.png"));
+         ImageIcon icon3 = new ImageIcon (getClass().getResource("/imagenes/zorro2.gif"));
          // ImageIcon tamaño3 = new ImageIcon(icon3.getImage().getScaledInstance(5, 5, 1));
         labelZorro.setIcon(icon3);
     }
@@ -146,9 +147,9 @@ public class Carrera extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
              // TODO code application logic here
-        AnimalAThread conejo = new AnimalAThread("conejo",100,labelConejo);
-        AnimalAThread tortuga = new AnimalAThread("tortuga",100,labelTortuga);
-        AnimalAThread zorro = new AnimalAThread("zorro",100,labelZorro);
+        AnimalAThread conejo = new AnimalAThread("conejo",100,labelConejo,100);
+        AnimalAThread tortuga = new AnimalAThread("tortuga",100,labelTortuga,30);
+        AnimalAThread zorro = new AnimalAThread("zorro",100,labelZorro,60);
        
         conejo.start();
         tortuga.start();
