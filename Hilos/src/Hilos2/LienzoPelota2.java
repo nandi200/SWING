@@ -16,7 +16,7 @@ import java.awt.geom.Ellipse2D;
 public class LienzoPelota2 extends javax.swing.JPanel implements Runnable {
     int x=0,y=0, velX=2,velY=2;
     
-     Thread hilo,hilo2;
+     Thread hilo;
      
     public void paint(Graphics g ){
          g.setColor(getBackground());
@@ -24,10 +24,6 @@ public class LienzoPelota2 extends javax.swing.JPanel implements Runnable {
          System.out.println("width "+getWidth() + " height "+getHeight());
          g.setColor(Color.BLUE);
          g.fillOval(x, y,40, 40);
-       // Ellipse2D circle= new Ellipse2D.Double(x,y,40,40);
-        
-        
-    
     }
     /**
      * Creates new form LienzoPelota2
@@ -35,22 +31,18 @@ public class LienzoPelota2 extends javax.swing.JPanel implements Runnable {
     public LienzoPelota2() {
         initComponents();
          hilo = new Thread(this);
-         hilo2 = new Thread(this);
+       
     }
  public void inicio (){
         hilo.start();
-        hilo2.start();
-    
     }
     
     public void pausa(){
         hilo.suspend();
-        hilo2.suspend();
-    }
+      }
     
     public void continuar(){
         hilo.resume();
-        hilo2.resume();
     }
     /**
      * This method is called from within the constructor to initialize the form.

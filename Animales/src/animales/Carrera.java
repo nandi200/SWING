@@ -20,16 +20,16 @@ public class Carrera extends javax.swing.JFrame {
     public Carrera() {
         initComponents();
         
-      //  ImageIcon icon = new ImageIcon (getClass().getResource("/imagenes/conejo2.gif"));
-      //  ImageIcon tamaño = new ImageIcon(icon.getImage().getScaledInstance(5, 5, 1));
-       ImageIcon icon = new ImageIcon(new ImageIcon("/imagenes/conejo2.gif").getImage().getScaledInstance(35, 35, Image.SCALE_REPLICATE));
-    
+        ImageIcon icon = new ImageIcon (getClass().getResource("/imagenes/conejito.png"));
+        ImageIcon tamaño = new ImageIcon(icon.getImage().getScaledInstance(5, 5, 1));
+     //  ImageIcon icon = new ImageIcon(new ImageIcon("/imagenes/conejito.png").getImage().getScaledInstance(35, 35, Image.SCALE_REPLICATE));
         labelConejo.setIcon(icon);
-         ImageIcon icon2 = new ImageIcon (getClass().getResource("/imagenes/tortuga2.gif"));
+         ImageIcon icon2 = new ImageIcon (getClass().getResource("/imagenes/jirafa.png"));
         ImageIcon tamaño2 = new ImageIcon(icon2.getImage().getScaledInstance(5, 5, 1));
          labelTortuga.setIcon(icon2);
-         ImageIcon icon3 = new ImageIcon (getClass().getResource("/imagenes/zorro2.gif"));
-         // ImageIcon tamaño3 = new ImageIcon(icon3.getImage().getScaledInstance(5, 5, 1));
+         
+         ImageIcon icon3 = new ImageIcon (getClass().getResource("/imagenes/zorrito.png"));                  
+        ImageIcon tamaño3 = new ImageIcon(icon3.getImage().getScaledInstance(5, 5, 1));
         labelZorro.setIcon(icon3);
     }
 
@@ -60,14 +60,14 @@ public class Carrera extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelConejo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(labelConejo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelConejo, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(labelConejo, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -120,24 +120,24 @@ public class Carrera extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnIniciar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(35, 35, 35)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(btnIniciar)
                 .addGap(25, 25, 25))
         );
