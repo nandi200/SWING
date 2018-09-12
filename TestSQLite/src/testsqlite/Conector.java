@@ -19,7 +19,8 @@ import java.util.logging.Logger;
  */
 public class Conector {
     // String url="/Users/erandi/GitHub/SWING/SQLite/pruebaBD.db"; 
-    String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
+    String url="/home/erandi/Documentos/erandi/SWING/SQLite/pruebaBD.db"; //cenac
+  // String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
     Connection connect;
 
     public void connect() {
