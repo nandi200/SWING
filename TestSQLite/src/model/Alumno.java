@@ -16,89 +16,71 @@ import utilities.Conector;
 public class Alumno {
     private String nombre;
     private String apellido;
+    private Double promedio;
     private int edad;
-    private String edoCivil;
-    private double promedio;
-    
-    public Alumno(){
+    private String beca;
+
+    public String getBeca() {
+        return beca;
     }
-    public Alumno(String nombre, String apellido, int edad, String edoCivil, double promedio) {
+
+    public void setBeca(String beca) {
+        this.beca = beca;
+    }
+    private String fechaNacimiento;
+
+    public Alumno(){};
+    public Alumno(String nombre, String apellido, Double promedio, int edad, String beca, String fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.edad = edad;
-        this.edoCivil = edoCivil;
         this.promedio = promedio;
+        this.edad = edad;
+        this.beca = beca;
+        this.fechaNacimiento = fechaNacimiento;
     }
- 
-    /**
-     * @return the nombre
-     */
+
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    /**
-     * @return the apellido
-     */
     public String getApellido() {
         return apellido;
     }
 
-    /**
-     * @param apellido the apellido to set
-     */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
-    /**
-     * @return the edad
-     */
+    public Double getPromedio() {
+        return promedio;
+    }
+
+    public void setPromedio(Double promedio) {
+        this.promedio = promedio;
+    }
+
+
     public int getEdad() {
         return edad;
     }
 
-    /**
-     * @param edad the edad to set
-     */
     public void setEdad(int edad) {
         this.edad = edad;
     }
 
-    /**
-     * @return the edoCivil
-     */
-    public String getEdoCivil() {
-        return edoCivil;
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    /**
-     * @param edoCivil the edoCivil to set
-     */
-    public void setEdoCivil(String edoCivil) {
-        this.edoCivil = edoCivil;
-    }
-
-    /**
-     * @return the promedio
-     */
-    public double getPromedio() {
-        return promedio;
-    }
-
-    /**
-     * @param promedio the promedio to set
-     */
-    public void setPromedio(double promedio) {
-        this.promedio = promedio;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
     
+  
     
 }

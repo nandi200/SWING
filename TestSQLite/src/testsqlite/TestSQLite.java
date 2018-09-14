@@ -36,7 +36,7 @@ public class TestSQLite {
  public static void save(){
         Conector con = new Conector();
         con.connect();
-        Alumno alumno = new Alumno("Erandi","Castillo",10,"Soltera",10);
+        Alumno alumno = new Alumno("Erandi","Castillo",10.0,20,"true","14-03-2018");
         con.guardarAlumno(alumno);
         con.close();
     }

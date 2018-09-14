@@ -15,10 +15,10 @@ public class Usuario {
     private String nombre;
     private String usuario;
     private String password;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private String direccion;
     public Usuario(){}
-    public Usuario(String nombre, String usuario, String password, Date fechaNacimiento, String direccion) {
+    public Usuario(String nombre, String usuario, String password, String fechaNacimiento, String direccion) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.password = password;
@@ -50,13 +50,14 @@ public class Usuario {
         this.password = password;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
 
     public String getDireccion() {
         return direccion;
