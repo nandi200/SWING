@@ -21,7 +21,8 @@ public class ConectSQLite {
             // parametros de la db
             //url
             //String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
-            String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/pruebaBD.db";
+            //String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/pruebaBD.db";
+            String url = "jdbc:sqlite:/home/erandi/Documents/SWING/SQLite/pruebaBD.db";  //cic-cubo
             //crea una conección con la bd
             conn = DriverManager.getConnection(url);
 

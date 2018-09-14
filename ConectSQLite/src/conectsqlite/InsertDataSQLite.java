@@ -28,7 +28,8 @@ public class InsertDataSQLite {
      */
     private Connection connect() {
         // Conección a la DB
-           String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/nuevaDB.db";
+          // String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/nuevaDB.db";
+            String url = "jdbc:sqlite:/home/erandi/Documents/SWING/SQLite/nuevaDB.db";  //cic-cubo
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);

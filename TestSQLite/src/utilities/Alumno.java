@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testsqlite;
+package utilities;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import utilities.Conector;
 
 /**
  *
@@ -15,26 +19,15 @@ public class Alumno {
     private int edad;
     private String edoCivil;
     private double promedio;
-
+    
+    public Alumno(){
+    }
     public Alumno(String nombre, String apellido, int edad, String edoCivil, double promedio) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.edoCivil = edoCivil;
         this.promedio = promedio;
-    }
- public void save(){
-        Conector con = new Conector();
-        con.connect();
-        con.saveAlumno(this);
-        con.close();
-    }
- 
-  public void consultDatos(){
-        Conector con = new Conector();
-        con.connect();
-        con.mostrarAlumnos();
-        con.close();
     }
  
     /**
