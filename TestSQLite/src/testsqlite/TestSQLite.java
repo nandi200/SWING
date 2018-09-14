@@ -7,7 +7,7 @@ package testsqlite;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import utilities.Alumno;
+import model.Alumno;
 import utilities.Conector;
 
 /**
