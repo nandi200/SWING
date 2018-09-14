@@ -5,6 +5,7 @@
  */
 package utilities;
 
+import model.Alumno;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,8 +17,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Usuario;
 
 /**
  *
@@ -25,9 +28,9 @@ import java.util.logging.Logger;
  */
 public class Conector {
     // String url="/Users/erandi/GitHub/SWING/SQLite/pruebaBD.db"; 
-    //String url="/home/erandi/Documentos/erandi/SWING/SQLite/pruebaBD.db"; //cenac
-    String url = "/home/erandi/Documents/SWING/SQLite/pruebaBD.db";  //cic-cubo
-    
+    String url="/home/erandi/Documentos/erandi/SWING/SQLite/sistemaRegistroBD.db"; //cenac
+    //String url = "/home/erandi/Documents/SWING/SQLite/pruebaBD.db";  //cic-cubo
+     
   // String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
     Connection connect;
 
@@ -82,6 +85,47 @@ public class Conector {
         }
 
     }
+    
+     public void guardarUsuario(Usuario usuario) {
+        try {
+            PreparedStatement st = connect.prepareStatement("insert into Usuarios "
+                    + "(nombre,usuario,contraseña,fechaNac,dirección) values (?,?,?,?,?)");
+            st.setString(1, usuario.getNombre());
+            st.setString(2, usuario.getUsuario());
+            st.setString(3, usuario.getPassword());
+           // st.setDate(4, "julianday('now')");
+            st.setString(5, usuario.getDireccion());
+            st.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+    }
+    
+     
+     public ArrayList<Usuario> buscaUsuario(String usuario, String password) {
+        ResultSet result = null;
+        ArrayList<Usuario> listUsu= new ArrayList<>(); 
+        try {
+            PreparedStatement st = connect.prepareStatement("SELECT * FROM Usuario WHERE usuario = ? AND contraseña = ?  ");
+            
+           // set the value
+            st.setString(1,usuario);
+            st.setString(2,password);
+             result  = st.executeQuery();
+            while (result.next()) {
+                Usuario usu = new Usuario(result.getString("nombre"),result.getString("usuario"),
+                result.getString("constraseña"),new Date(result.getString("fechaNac")),result.getString("dirección"));
+                listUsu.add(usu);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return listUsu;
+    }
+     
+     
+     
     
     
       public ArrayList<Alumno> buscaXPromedioAlumnos(Double score) {
