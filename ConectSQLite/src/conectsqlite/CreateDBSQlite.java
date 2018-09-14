@@ -21,7 +21,8 @@ public class CreateDBSQlite{
     public static void crearBDSQLite(String fileName) {
  
         //String url = "jdbc:sqlite:C:/sqlite/db/" + fileName;
-        String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/"+fileName;
+       // String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/"+fileName;
+       String url = "jdbc:sqlite:/home/erandi/Documents/SWING/SQLite/"+fileName;  //cic-cubo
  
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {

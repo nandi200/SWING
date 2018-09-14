@@ -22,7 +22,8 @@ public class CreateTableSQLite{
      */
     public static void creaNuevaTabla() {
         // Dirección de la BD
-         String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/nuevaDB.db";
+        // String url = "jdbc:sqlite:C:/Users/erand/Documents/CursoDiplomanoJava_SWING/SWING/SQLite/nuevaDB.db";
+         String url = "jdbc:sqlite:/home/erandi/Documents/SWING/SQLite/nuevaDB.db";  //cic-cubo
         
         // SQL declaración para la nueva Tabla
         String sql = "CREATE TABLE IF NOT EXISTS vendedores (\n"
