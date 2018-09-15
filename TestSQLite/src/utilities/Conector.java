@@ -10,7 +10,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,9 +30,10 @@ import model.Usuario;
  */
 public class Conector {
 
-    // String url="/Users/erandi/GitHub/SWING/SQLite/pruebaBD.db"; 
+   
+  String url="/Users/erandi/GitHub/SWING/SQLite/sistemaRegistroBD.db"; //mac
     //String url="/home/erandi/Documentos/erandi/SWING/SQLite/sistemaRegistroBD.db"; //cenac
-    String url = "/home/erandi/Documents/SWING/SQLite/sistemaRegistro.db";  //cic-cubo
+  //  String url = "/home/erandi/Documents/SWING/SQLite/sistemaRegistro.db";  //cic-cubo
 
     // String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
     Connection connect;
@@ -59,8 +62,8 @@ public class Conector {
 
     public void guardarUsuario(Usuario usuario) {
         try {
-            PreparedStatement st = connect.prepareStatement("insert into Usuarios2 "
-                    + "(nombre,usuario,password,fechaNacimiento,direccion) values (?,?,?,?,?)");
+            PreparedStatement st = connect.prepareStatement("insert into Usuarios "
+                    + "(nombre,usuario,contraseña,fechaNac,dirección) values (?,?,?,?,?)");
             st.setString(1, usuario.getNombre());
             st.setString(2, usuario.getUsuario());
             st.setString(3, usuario.getPassword());
@@ -77,7 +80,7 @@ public class Conector {
         ResultSet result = null;
         ArrayList<Usuario> listUsu = new ArrayList<>();
         try {
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM Usuarios2 WHERE usuario = ? AND password = ?  ");
+            PreparedStatement st = connect.prepareStatement("SELECT * FROM Usuarios WHERE usuario = ? AND contraseña = ?  ");
 
             // set the value
             st.setString(1, usuario);
@@ -85,7 +88,7 @@ public class Conector {
             result = st.executeQuery();
             while (result.next()) {
                 Usuario usu = new Usuario(result.getString("nombre"), result.getString("usuario"),
-                        result.getString("password"), result.getString("fechaNacimiento"), result.getString("direccion"));
+                        result.getString("contraseña"), result.getString("fechaNac"), result.getString("dirección"));
                 listUsu.add(usu);
             }
         } catch (SQLException ex) {
@@ -98,15 +101,15 @@ public class Conector {
         ResultSet result = null;
         ArrayList<Alumno> listAlum = new ArrayList<>();
         try {
-            PreparedStatement st = connect.prepareStatement("select * from Alumnos2 where promedio >= ?");
+            PreparedStatement st = connect.prepareStatement("select * from Alumnos where promedio >= ?");
 
             // set the value
             st.setDouble(1, score);
             result = st.executeQuery();
             while (result.next()) {
                 Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
-                        result.getDouble("promedio"),result.getInt("edad"),
-                        result.getString("beca"),result.getString("fechaNacimiento") );
+                        result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
+                        result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
                 listAlum.add(alum);
             }
         } catch (SQLException ex) {
@@ -118,13 +121,13 @@ public class Conector {
         ResultSet result = null;
         ArrayList<Alumno> listAlum = new ArrayList<>();
         try {
-            PreparedStatement st = connect.prepareStatement("select * from Alumnos2");
+            PreparedStatement st = connect.prepareStatement("select * from Alumnos");
 
            result = st.executeQuery();
             while (result.next()) {
                 Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
-                        result.getDouble("promedio"), result.getInt("edad"),
-                        result.getString("beca"),result.getString("fechaNacimiento") );
+                        result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
+                        result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
                 listAlum.add(alum);
             }
         } catch (SQLException ex) {
@@ -136,14 +139,16 @@ public class Conector {
     
      public void guardarAlumno(Alumno alumno) {
         try {
-            PreparedStatement st = connect.prepareStatement("insert into Alumnos2 "
-                    + "(nombre,apellido,promedio,edad,beca,fechaNacimiento) values (?,?,?,?,?,?)");
+            PreparedStatement st = connect.prepareStatement("insert into Alumnos "
+                    + "(nombre,apellido,promedio,grado,edad,beca,fechaNacimiento,imagen) values (?,?,?,?,?,?,?,?)");
             st.setString(1, alumno.getNombre());
             st.setString(2, alumno.getApellido());
-            st.setDouble(3, alumno.getPromedio());;           
-            st.setInt(4, alumno.getEdad());
-            st.setString(5,alumno.getBeca());
-            st.setString(6, alumno.getFechaNacimiento());
+            st.setDouble(3, alumno.getPromedio());
+            st.setString(4, alumno.getGrado());
+            st.setInt(5, alumno.getEdad());
+            st.setString(6,alumno.getBeca());
+            st.setString(7, alumno.getFechaNacimiento());
+            st.setBytes(8,alumno.getAlumnoImagen());
             st.execute();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -154,7 +159,7 @@ public class Conector {
 
         boolean resul = false;
         try {
-            String sql = "UPDATE Alumnos2 SET Nombre = ?,"
+            String sql = "UPDATE Alumnos SET Nombre = ?,"
                     + " Promedio = ? "
                     + " WHERE Edad = ?";
 
@@ -178,7 +183,7 @@ public class Conector {
 
         boolean resul = false;
         try {
-            String sql = "DELETE FROM Alumnos2 "
+            String sql = "DELETE FROM Alumnos "
                     + " WHERE Nombre = ?";
 
             PreparedStatement st = connect.prepareStatement(sql);
@@ -195,29 +200,7 @@ public class Conector {
 
     }
 
-    /**
-     * Read the file and returns the byte array
-     *
-     * @param file
-     * @return the bytes of the file
-     */
-    private byte[] readFile(String file) {
-        ByteArrayOutputStream bos = null;
-        try {
-            File f = new File(file);
-            FileInputStream fis = new FileInputStream(f);
-            byte[] buffer = new byte[1024];
-            bos = new ByteArrayOutputStream();
-            for (int len; (len = fis.read(buffer)) != -1;) {
-                bos.write(buffer, 0, len);
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
-        } catch (IOException e2) {
-            System.err.println(e2.getMessage());
-        }
-        return bos != null ? bos.toByteArray() : null;
-    }
+  
 
     /**
      * Update picture for a specific material
@@ -228,14 +211,14 @@ public class Conector {
     public void updatePicture(String nombre, String filename) {
         try {
             // update sql
-            String updateSQL = "UPDATE Alumnos2 "
+            String updateSQL = "UPDATE Alumnos "
                     + "SET fotografia = ? "
                     + "WHERE nombre=?";
 
             PreparedStatement pstmt = connect.prepareStatement(updateSQL);
-
+            ImageBlob img = new ImageBlob();    
             // set parameters
-            pstmt.setBytes(1, readFile(filename));
+            pstmt.setBytes(1, img.readFile(filename));
             pstmt.setString(2, nombre);
 
             pstmt.executeUpdate();
@@ -245,5 +228,59 @@ public class Conector {
         }
 
     }
-
+/**
+     * read the picture file and insert into the material master table
+     *
+     * @param materialId
+     * @param filename
+     */
+    public void readPicture(int materialId, String filename) {
+        // update sql
+        String selectSQL = "SELECT picture FROM materials WHERE id=?";
+        ResultSet rs = null;
+        FileOutputStream fos = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+ 
+        try {
+            
+            pstmt = connect.prepareStatement(selectSQL);
+            pstmt.setInt(1, materialId);
+            rs = pstmt.executeQuery();
+ 
+            // write binary stream into file
+            File file = new File(filename);
+            fos = new FileOutputStream(file);
+ 
+            System.out.println("Writing BLOB to file " + file.getAbsolutePath());
+            while (rs.next()) {
+                InputStream input = rs.getBinaryStream("picture");
+                byte[] buffer = new byte[1024];
+                while (input.read(buffer) > 0) {
+                    fos.write(buffer);
+                }
+            }
+        } catch (SQLException | IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+ 
+                if (conn != null) {
+                    conn.close();
+                }
+                if (fos != null) {
+                    fos.close();
+                }
+ 
+            } catch (SQLException | IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

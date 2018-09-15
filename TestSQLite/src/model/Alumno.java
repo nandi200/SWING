@@ -17,8 +17,11 @@ public class Alumno {
     private String nombre;
     private String apellido;
     private Double promedio;
-    private int edad;
+    private String grado;
+    private Integer edad;
     private String beca;
+    private String fechaNacimiento;
+    private byte [] alumnoImagen;
 
     public String getBeca() {
         return beca;
@@ -27,16 +30,18 @@ public class Alumno {
     public void setBeca(String beca) {
         this.beca = beca;
     }
-    private String fechaNacimiento;
 
     public Alumno(){};
-    public Alumno(String nombre, String apellido, Double promedio, int edad, String beca, String fechaNacimiento) {
+    public Alumno(String nombre, String apellido, Double promedio, String grado, 
+            int edad, String beca, String fechaNacimiento,byte [] alumnoImagen) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.promedio = promedio;
+        this.grado=grado;
         this.edad = edad;
         this.beca = beca;
         this.fechaNacimiento = fechaNacimiento;
+        this.alumnoImagen = alumnoImagen;
     }
 
     public String getNombre() {
@@ -79,6 +84,34 @@ public class Alumno {
 
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    /**
+     * @return the grado
+     */
+    public String getGrado() {
+        return grado;
+    }
+
+    /**
+     * @param grado the grado to set
+     */
+    public void setGrado(String grado) {
+        this.grado = grado;
+    }
+
+    /**
+     * @return the alumnoImagen
+     */
+    public byte[] getAlumnoImagen() {
+        return alumnoImagen;
+    }
+
+    /**
+     * @param alumnoImagen the alumnoImagen to set
+     */
+    public void setAlumnoImagen(byte[] alumnoImagen) {
+        this.alumnoImagen = alumnoImagen;
     }
     
   
