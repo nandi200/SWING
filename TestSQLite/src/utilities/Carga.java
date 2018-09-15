@@ -6,6 +6,7 @@
 package utilities;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import model.Alumno;
 
@@ -14,7 +15,35 @@ import model.Alumno;
  * @author erandi
  */
 public class Carga {
+ public DefaultComboBoxModel cargaEdad (int min,int max){
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            String edades[]=null;
+            for (int i = min; i <=max; i++) {
+                //    edades[i-min]=String.valueOf(i);
+                    model.addElement(String.valueOf(i));
+            }
+            return model;
+    }
+ public DefaultComboBoxModel cargaGrado (){
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+              //    edades[i-min]=String.valueOf(i);
+                    model.addElement("Secundaria");
+                    model.addElement("Preparatoria");
+                    model.addElement("Licenciatura");
+                    model.addElement("Posgrado");
+        
+            return model;
+    }
+ public DefaultComboBoxModel cargaPromedio (double min,double max){
+             DefaultComboBoxModel model = new DefaultComboBoxModel();
+            String edades[]=null;
+            for (double i = min; i<=max; i=i+0.5) {
+                //    edades[i-min]=String.valueOf(i);
+                    model.addElement(String.valueOf(i));
+            }
+            return model;
 
+    }
     public DefaultTableModel cargaAlumnos() {
         DefaultTableModel model = new DefaultTableModel() {
             @Override
