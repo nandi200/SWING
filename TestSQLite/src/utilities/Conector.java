@@ -27,11 +27,12 @@ import model.Usuario;
  * @author erandi
  */
 public class Conector {
+
     // String url="/Users/erandi/GitHub/SWING/SQLite/pruebaBD.db"; 
-    String url="/home/erandi/Documentos/erandi/SWING/SQLite/sistemaRegistroBD.db"; //cenac
-    //String url = "/home/erandi/Documents/SWING/SQLite/pruebaBD.db";  //cic-cubo
-     
-  // String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
+    //String url="/home/erandi/Documentos/erandi/SWING/SQLite/sistemaRegistroBD.db"; //cenac
+    String url = "/home/erandi/Documents/SWING/SQLite/sistemaRegistro.db";  //cic-cubo
+
+    // String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
     Connection connect;
 
     public void connect() {
@@ -53,47 +54,17 @@ public class Conector {
         }
     }
 
-    public ArrayList<Alumno> buscarAlumnos() {
-        ResultSet result = null;
-        ArrayList<Alumno> listAlum= new ArrayList<>(); 
-        try {
-            PreparedStatement st = connect.prepareStatement("select * from Alumno");
-            result = st.executeQuery();
-            while (result.next()) {
-                Alumno alum = new Alumno(result.getString("Nombre"),result.getString("Apellido"),
-                result.getInt("Edad"),result.getString("EdoCivil"),result.getDouble("Promedio"));
-                listAlum.add(alum);
-            }
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-        return listAlum;
-    }
 
-    public void guardarAlumno(Alumno alumno) {
-        try {
-            PreparedStatement st = connect.prepareStatement("insert into Alumno "
-                    + "(Nombre,Apellido,EdoCivil,Promedio,Edad) values (?,?,?,?,?)");
-            st.setString(1, alumno.getNombre());
-            st.setString(2, alumno.getApellido());
-            st.setString(3, alumno.getEdoCivil());
-            st.setDouble(4, alumno.getPromedio());
-            st.setInt(5, alumno.getEdad());
-            st.execute();
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
+   
 
-    }
-    
-     public void guardarUsuario(Usuario usuario) {
+    public void guardarUsuario(Usuario usuario) {
         try {
-            PreparedStatement st = connect.prepareStatement("insert into Usuarios "
-                    + "(nombre,usuario,contraseña,fechaNac,dirección) values (?,?,?,?,?)");
+            PreparedStatement st = connect.prepareStatement("insert into Usuarios2 "
+                    + "(nombre,usuario,password,fechaNacimiento,direccion) values (?,?,?,?,?)");
             st.setString(1, usuario.getNombre());
             st.setString(2, usuario.getUsuario());
             st.setString(3, usuario.getPassword());
-           // st.setDate(4, "julianday('now')");
+            st.setString(4, usuario.getFechaNacimiento());
             st.setString(5, usuario.getDireccion());
             st.execute();
         } catch (SQLException ex) {
@@ -101,21 +72,20 @@ public class Conector {
         }
 
     }
-    
-     
-     public ArrayList<Usuario> buscaUsuario(String usuario, String password) {
+
+    public ArrayList<Usuario> buscaUsuario(String usuario, String password) {
         ResultSet result = null;
-        ArrayList<Usuario> listUsu= new ArrayList<>(); 
+        ArrayList<Usuario> listUsu = new ArrayList<>();
         try {
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM Usuario WHERE usuario = ? AND contraseña = ?  ");
-            
-           // set the value
-            st.setString(1,usuario);
-            st.setString(2,password);
-             result  = st.executeQuery();
+            PreparedStatement st = connect.prepareStatement("SELECT * FROM Usuarios2 WHERE usuario = ? AND password = ?  ");
+
+            // set the value
+            st.setString(1, usuario);
+            st.setString(2, password);
+            result = st.executeQuery();
             while (result.next()) {
-                Usuario usu = new Usuario(result.getString("nombre"),result.getString("usuario"),
-                result.getString("constraseña"),new Date(result.getString("fechaNac")),result.getString("dirección"));
+                Usuario usu = new Usuario(result.getString("nombre"), result.getString("usuario"),
+                        result.getString("password"), result.getString("fechaNacimiento"), result.getString("direccion"));
                 listUsu.add(usu);
             }
         } catch (SQLException ex) {
@@ -123,23 +93,20 @@ public class Conector {
         }
         return listUsu;
     }
-     
-     
-     
-    
-    
-      public ArrayList<Alumno> buscaXPromedioAlumnos(Double score) {
+
+    public ArrayList<Alumno> buscaXPromedioAlumnos(Double score) {
         ResultSet result = null;
-        ArrayList<Alumno> listAlum= new ArrayList<>(); 
+        ArrayList<Alumno> listAlum = new ArrayList<>();
         try {
-            PreparedStatement st = connect.prepareStatement("select * from Alumno where Promedio >= ?");
-            
-           // set the value
-            st.setDouble(1,score);
-             result  = st.executeQuery();
+            PreparedStatement st = connect.prepareStatement("select * from Alumnos2 where promedio >= ?");
+
+            // set the value
+            st.setDouble(1, score);
+            result = st.executeQuery();
             while (result.next()) {
-                Alumno alum = new Alumno(result.getString("Nombre"),result.getString("Apellido"),
-                result.getInt("Edad"),result.getString("EdoCivil"),result.getDouble("Promedio"));
+                Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
+                        result.getDouble("promedio"),result.getInt("edad"),
+                        result.getString("beca"),result.getString("fechaNacimiento") );
                 listAlum.add(alum);
             }
         } catch (SQLException ex) {
@@ -147,55 +114,90 @@ public class Conector {
         }
         return listAlum;
     }
-      
-      
-       public boolean actualizaPromedioAlumno(int edad,String name,Double score) {
-        
-            boolean resul=false;
+    public ArrayList<Alumno> buscarAlumnos() {
+        ResultSet result = null;
+        ArrayList<Alumno> listAlum = new ArrayList<>();
         try {
-            String sql="UPDATE Alumno SET Nombre = ?,"
+            PreparedStatement st = connect.prepareStatement("select * from Alumnos2");
+
+           result = st.executeQuery();
+            while (result.next()) {
+                Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
+                        result.getDouble("promedio"), result.getInt("edad"),
+                        result.getString("beca"),result.getString("fechaNacimiento") );
+                listAlum.add(alum);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return listAlum;
+    }
+
+    
+     public void guardarAlumno(Alumno alumno) {
+        try {
+            PreparedStatement st = connect.prepareStatement("insert into Alumnos2 "
+                    + "(nombre,apellido,promedio,edad,beca,fechaNacimiento) values (?,?,?,?,?,?)");
+            st.setString(1, alumno.getNombre());
+            st.setString(2, alumno.getApellido());
+            st.setDouble(3, alumno.getPromedio());;           
+            st.setInt(4, alumno.getEdad());
+            st.setString(5,alumno.getBeca());
+            st.setString(6, alumno.getFechaNacimiento());
+            st.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+    }
+    public boolean actualizaPromedioAlumno(int edad, String name, Double score) {
+
+        boolean resul = false;
+        try {
+            String sql = "UPDATE Alumnos2 SET Nombre = ?,"
                     + " Promedio = ? "
                     + " WHERE Edad = ?";
-            
+
             PreparedStatement st = connect.prepareStatement(sql);
-            
-           // set the value
-           st.setString(1, name);
-           st.setDouble(2,score);
-           st.setDouble(3,edad);
-           
-           st.executeUpdate();           
-           resul=true;
-          
+
+            // set the value
+            st.setString(1, name);
+            st.setDouble(2, score);
+            st.setDouble(3, edad);
+
+            st.executeUpdate();
+            resul = true;
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
         return resul;
     }
 
-       public boolean borrarAlumno(String name) {
-        
-            boolean resul=false;
+    public boolean borrarAlumno(String name) {
+
+        boolean resul = false;
         try {
-            String sql="DELETE FROM Alumno "
+            String sql = "DELETE FROM Alumnos2 "
                     + " WHERE Nombre = ?";
-            
+
             PreparedStatement st = connect.prepareStatement(sql);
-            
-           // set the value
-           st.setString(1, name);                   
-           st.executeUpdate();           
-           resul=true;
-          
+
+            // set the value
+            st.setString(1, name);
+            st.executeUpdate();
+            resul = true;
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
         return resul;
- 
-       }
-       
-        /**
+
+    }
+
+    /**
      * Read the file and returns the byte array
+     *
      * @param file
      * @return the bytes of the file
      */
@@ -216,6 +218,7 @@ public class Conector {
         }
         return bos != null ? bos.toByteArray() : null;
     }
+
     /**
      * Update picture for a specific material
      *
@@ -225,24 +228,22 @@ public class Conector {
     public void updatePicture(String nombre, String filename) {
         try {
             // update sql
-            String updateSQL = "UPDATE Alumno "
+            String updateSQL = "UPDATE Alumnos2 "
                     + "SET fotografia = ? "
                     + "WHERE nombre=?";
-            
+
             PreparedStatement pstmt = connect.prepareStatement(updateSQL);
-            
+
             // set parameters
             pstmt.setBytes(1, readFile(filename));
             pstmt.setString(2, nombre);
- 
+
             pstmt.executeUpdate();
             System.out.println("Stored the file in the BLOB column.");
         } catch (SQLException ex) {
             Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
-      
+
     }
-    
-    
+
 }
