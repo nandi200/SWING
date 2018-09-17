@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/erandi/Documents/SWING/TestSQLite/src/testsqlite/Conector.java</file>
+            <file>file:/home/erandi/Documents/SWING/TestSQLite/src/vistas/AlumnosForm.java</file>
+            <file>file:/home/erandi/Documents/SWING/TestSQLite/src/utilities/Carga.java</file>
+            <file>file:/home/erandi/Documents/SWING/TestSQLite/src/vistas/LoginForm.java</file>
+            <file>file:/home/erandi/Documents/SWING/TestSQLite/src/vistas/RegisterAlumnoForm.java</file>
+            <file>file:/home/erandi/Documents/SWING/TestSQLite/src/utilities/Conector.java</file>
         </group>
     </open-files>
 </project-private>
