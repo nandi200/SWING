@@ -14,6 +14,7 @@ import utilities.Conector;
  * @author erandi
  */
 public class Alumno {
+    private Integer id;
     private String nombre;
     private String apellido;
     private Double promedio;
@@ -32,8 +33,9 @@ public class Alumno {
     }
 
     public Alumno(){};
-    public Alumno(String nombre, String apellido, Double promedio, String grado, 
+    public Alumno(Integer id,String nombre, String apellido, Double promedio, String grado, 
             int edad, String beca, String fechaNacimiento,byte [] alumnoImagen) {
+        this.id=id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.promedio = promedio;
@@ -112,6 +114,20 @@ public class Alumno {
      */
     public void setAlumnoImagen(byte[] alumnoImagen) {
         this.alumnoImagen = alumnoImagen;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
     
   

@@ -31,9 +31,9 @@ import model.Usuario;
 public class Conector {
 
    
-  String url="/Users/erandi/GitHub/SWING/SQLite/sistemaRegistroBD.db"; //mac
+ // String url="/Users/erandi/GitHub/SWING/SQLite/sistemaRegistroBD.db"; //mac
     //String url="/home/erandi/Documentos/erandi/SWING/SQLite/sistemaRegistroBD.db"; //cenac
-  //  String url = "/home/erandi/Documents/SWING/SQLite/sistemaRegistro.db";  //cic-cubo
+  String url = "/home/erandi/Documents/SWING/SQLite/sistemaRegistroBD.db";  //cic-cubo
 
     // String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
     Connection connect;
@@ -96,6 +96,31 @@ public class Conector {
         }
         return listUsu;
     }
+        public Alumno buscaAlumno(String nombre, String apellido) {
+        ResultSet result = null;
+        Alumno alum = null;
+      //  ArrayList<Alumno> listAlu = new ArrayList<>();
+        try {
+            PreparedStatement st = connect.prepareStatement("SELECT * FROM Alumnos WHERE nombre = ? AND apellido = ? LIMIT 1 ");
+
+            // set the value
+            st.setString(1, nombre);
+            st.setString(2, apellido);
+            result = st.executeQuery();
+            
+            while (result.next()) {
+              alum = new Alumno(result.getInt("id"),result.getString("nombre"), result.getString("apellido"),
+                        result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
+                        result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
+               // listAlu.add(alum);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return alum;
+    }
+    
+    
 
     public ArrayList<Alumno> buscaXPromedioAlumnos(Double score) {
         ResultSet result = null;
@@ -107,7 +132,7 @@ public class Conector {
             st.setDouble(1, score);
             result = st.executeQuery();
             while (result.next()) {
-                Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
+                Alumno alum = new Alumno(result.getInt("id"),result.getString("nombre"), result.getString("apellido"),
                         result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
                         result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
                 listAlum.add(alum);
@@ -125,7 +150,7 @@ public class Conector {
 
            result = st.executeQuery();
             while (result.next()) {
-                Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
+                Alumno alum = new Alumno(result.getInt("id"),result.getString("nombre"), result.getString("apellido"),
                         result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
                         result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
                 listAlum.add(alum);
@@ -203,16 +228,16 @@ public class Conector {
   
 
     /**
-     * Update picture for a specific material
+     * Actualiza la imagen de un alumno
      *
-     * @param materialId
+     * @param nombre
      * @param filename
      */
     public void updatePicture(String nombre, String filename) {
         try {
             // update sql
             String updateSQL = "UPDATE Alumnos "
-                    + "SET fotografia = ? "
+                    + "SET imagen = ? "
                     + "WHERE nombre=?";
 
             PreparedStatement pstmt = connect.prepareStatement(updateSQL);
@@ -222,30 +247,32 @@ public class Conector {
             pstmt.setString(2, nombre);
 
             pstmt.executeUpdate();
-            System.out.println("Stored the file in the BLOB column.");
+            System.out.println("Se almaceno un archivo BLOB en la tabla Alumnos.");
         } catch (SQLException ex) {
             Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 /**
-     * read the picture file and insert into the material master table
-     *
-     * @param materialId
+     * 
+     * lee un archivo de imagen para lo agregar en la tabla de Alumnos
+     * 
+     * @param alumnolId
      * @param filename
      */
-    public void readPicture(int materialId, String filename) {
+    public String readPicture(int alumnoId, String filename) {
         // update sql
-        String selectSQL = "SELECT picture FROM materials WHERE id=?";
+        String absolutPath="";
+        String selectSQL = "SELECT imagen FROM Alumnos WHERE id=?";
         ResultSet rs = null;
         FileOutputStream fos = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
- 
+ ByteArrayOutputStream bos = null;
         try {
             
             pstmt = connect.prepareStatement(selectSQL);
-            pstmt.setInt(1, materialId);
+            pstmt.setInt(1, alumnoId);
             rs = pstmt.executeQuery();
  
             // write binary stream into file
@@ -254,11 +281,15 @@ public class Conector {
  
             System.out.println("Writing BLOB to file " + file.getAbsolutePath());
             while (rs.next()) {
-                InputStream input = rs.getBinaryStream("picture");
+                InputStream input = rs.getBinaryStream("imagen");
                 byte[] buffer = new byte[1024];
                 while (input.read(buffer) > 0) {
                     fos.write(buffer);
+                  //    bos.write(buffer);
                 }
+                absolutPath= file.getAbsolutePath();
+                
+
             }
         } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
@@ -282,5 +313,6 @@ public class Conector {
                 System.out.println(e.getMessage());
             }
         }
+        return absolutPath;
     }
 }
