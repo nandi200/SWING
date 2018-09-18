@@ -30,7 +30,9 @@ import utilities.ImageBlob;
  * @author erandi
  */
 public class RegisterAlumnoForm extends javax.swing.JFrame {
-        private byte [] personImage;
+
+    private byte[] personImage;
+
     /**
      * Creates new form RegisterAlumnoForm
      */
@@ -42,19 +44,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
         cmbEdad.setModel(model.cargaEdad(18, 45));
         cmbGrado.setModel(model.cargaGrado());
         cmbPromedio.setModel(model.cargaPromedio(5.5, 10.0));
-        /* cmbEdad.setRenderer(new DefaultListCellRenderer() {
-         Object child = cmbEdad.getAccessibleContext().getAccessibleChild(0);
-         BasicComboPopup popup = (BasicComboPopup)child;
-         JList list = popup.getList();
-                  
-         public void paint(Graphics g) {
-         setBackground(new Color(108, 122, 137));
-         setForeground(new Color(228, 241, 254));
-         //     setSelectionForeground(new Color(228, 241, 254));
-         super.paint(g);
-         }      
-         
-         });*/
+
     }
 
     /**
@@ -445,7 +435,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if (!textNombre.getText().equals("") && !textApellido.getText().equals("")
                 && cmbGrado.getSelectedIndex() != -1 && cmbEdad.getSelectedIndex() != -1
-               && cmbPromedio.getSelectedIndex() != -1 && personImage!=null) {
+                && cmbPromedio.getSelectedIndex() != -1 && personImage != null) {
             Alumno alumno = new Alumno();
             Conector con = new Conector();
             con.connect();
@@ -463,11 +453,16 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
             } else {
                 alumno.setBeca("false");
             }
-            alumno.setAlumnoImagen(personImage);
-            con.guardarAlumno(alumno);
+
+            if (con.buscaAlumno(alumno.getNombre(), alumno.getApellido()) == null) {
+                alumno.setAlumnoImagen(personImage);
+                con.guardarAlumno(alumno);
+                JOptionPane.showMessageDialog(null, "Se agrego un alumno", "Alumno Nuevo", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "El alumno ya existe, favor de ingresar otros datos", "No se puede registrar", JOptionPane.ERROR_MESSAGE);
+            }
             con.close();
 
-            JOptionPane.showMessageDialog(null, "Se agrego un alumno", "Alumno Nuevo", JOptionPane.INFORMATION_MESSAGE);
             clean();
         } else {
             JOptionPane.showMessageDialog(null, "Faltan parametros", "No se puede registrar", JOptionPane.ERROR_MESSAGE);
@@ -512,12 +507,12 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
         int retVal = fc.showOpenDialog(this);
         if (retVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            String filename= file.getAbsolutePath();
-            
-           ImageBlob img = new ImageBlob();
-           personImage=img.readFile(filename);
+            String filename = file.getAbsolutePath();
+
+            ImageBlob img = new ImageBlob();
+            personImage = img.readFile(filename);
             labelImage.setIcon(new ImageIcon(personImage));
-           
+
         } else {
             System.out.println("File access cancelled by user.");
         }

@@ -96,26 +96,28 @@ public class Conector {
         }
         return listUsu;
     }
-        public ArrayList<Alumno> buscaAlumno(String nombre, String apellido) {
+        public Alumno buscaAlumno(String nombre, String apellido) {
         ResultSet result = null;
-        ArrayList<Alumno> listAlu = new ArrayList<>();
+        Alumno alum = null;
+      //  ArrayList<Alumno> listAlu = new ArrayList<>();
         try {
-            PreparedStatement st = connect.prepareStatement("SELECT * FROM Alumnos WHERE nombre = ? AND apellido = ?  ");
+            PreparedStatement st = connect.prepareStatement("SELECT * FROM Alumnos WHERE nombre = ? AND apellido = ? LIMIT 1 ");
 
             // set the value
             st.setString(1, nombre);
             st.setString(2, apellido);
             result = st.executeQuery();
+            
             while (result.next()) {
-                Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
+              alum = new Alumno(result.getInt("id"),result.getString("nombre"), result.getString("apellido"),
                         result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
                         result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
-                listAlu.add(alum);
+               // listAlu.add(alum);
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        return listAlu;
+        return alum;
     }
     
     
@@ -130,7 +132,7 @@ public class Conector {
             st.setDouble(1, score);
             result = st.executeQuery();
             while (result.next()) {
-                Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
+                Alumno alum = new Alumno(result.getInt("id"),result.getString("nombre"), result.getString("apellido"),
                         result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
                         result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
                 listAlum.add(alum);
@@ -148,7 +150,7 @@ public class Conector {
 
            result = st.executeQuery();
             while (result.next()) {
-                Alumno alum = new Alumno(result.getString("nombre"), result.getString("apellido"),
+                Alumno alum = new Alumno(result.getInt("id"),result.getString("nombre"), result.getString("apellido"),
                         result.getDouble("promedio"),result.getString("grado"), result.getInt("edad"),
                         result.getString("beca"),result.getString("fechaNacimiento"),result.getBytes("imagen") );
                 listAlum.add(alum);

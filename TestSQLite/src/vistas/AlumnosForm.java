@@ -162,8 +162,6 @@ public class AlumnosForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("jLabel2");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -253,15 +251,17 @@ public class AlumnosForm extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int i = jTable1.getSelectedRow();
+        
         String nombre = jTable1.getValueAt(i,0).toString(); //nombre del producto (fila, columna)
          String apellido = jTable1.getValueAt(i,1).toString();
-         ArrayList <Alumno> listA = new ArrayList<>();
+         Alumno alumno = new Alumno();
          Conector con = new Conector();
          con.connect();
-         listA=con.buscaAlumno(nombre, apellido);
-         String path = con.readPicture(5,"imagen.png");
+         alumno=con.buscaAlumno(nombre, apellido);
+         String path = con.readPicture(alumno.getId(),"imagen.png");
          System.out.println("path "+path);
          con.close();
+         jLabel2.setIcon(null);
          ImageIcon icon = new ImageIcon (path);
         jLabel2.setIcon(icon);
     }//GEN-LAST:event_jTable1MouseClicked
