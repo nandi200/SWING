@@ -59,6 +59,9 @@ public class AlumnosForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(44, 62, 80));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setLocation(new java.awt.Point(200, 200));
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(143, 0, 0));
@@ -257,15 +260,35 @@ public class AlumnosForm extends javax.swing.JFrame {
          Alumno alumno = new Alumno();
          Conector con = new Conector();
          con.connect();
+      
          alumno=con.buscaAlumno(nombre, apellido);
          String path = con.readPicture(alumno.getId(),"imagen.png");
+          jLabel2.removeAll();
+         jLabel2.setIcon(null);
+ 
+         retardo(5);
          System.out.println("path "+path);
          con.close();
-         jLabel2.setIcon(null);
-         ImageIcon icon = new ImageIcon (path);
+ 
+         ImageIcon icon = new ImageIcon (path);      
+         icon.getImage().flush();
         jLabel2.setIcon(icon);
     }//GEN-LAST:event_jTable1MouseClicked
 
+    public void retardo ( int timeToWait){
+     
+        System.out.print("retardo");
+        try {
+            for (int i=0; i<timeToWait ; i++) {
+                Thread.sleep(1000);
+                System.out.print(".");
+            }
+        } catch (InterruptedException ie)
+        {
+            Thread.currentThread().interrupt();
+        }
+    
+    }
     /**
      * @param args the command line arguments
      */

@@ -268,7 +268,7 @@ public class Conector {
         FileOutputStream fos = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
- ByteArrayOutputStream bos = null;
+
         try {
             
             pstmt = connect.prepareStatement(selectSQL);
@@ -281,12 +281,11 @@ public class Conector {
  
             System.out.println("Writing BLOB to file " + file.getAbsolutePath());
             while (rs.next()) {
-                InputStream input = rs.getBinaryStream("imagen");
+                InputStream input = rs.getBinaryStream("imagen");  //campo en la tabla
                 byte[] buffer = new byte[1024];
                 while (input.read(buffer) > 0) {
                     fos.write(buffer);
-                  //    bos.write(buffer);
-                }
+                 }
                 absolutPath= file.getAbsolutePath();
                 
 
