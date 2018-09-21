@@ -5,8 +5,12 @@
  */
 package vistas;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Alumno;
@@ -22,19 +26,19 @@ public class AlumnosForm extends javax.swing.JFrame {
     //modelo que contendra los datos de los alumnos
     DefaultTableModel modelo1 = new DefaultTableModel();
     //ordenador de filas para la  tabla
-    TableRowSorter sorter ;
-    
+    TableRowSorter sorter;
+
     public AlumnosForm() {
         initComponents();
-          this.setLocationRelativeTo(null); //centra el form
-          
+        this.setLocationRelativeTo(null); //centra el form
+
         Carga datos = new Carga();
-        modelo1=datos.cargaAlumnos();
+        modelo1 = datos.cargaAlumnos();
         jTable1.setModel(modelo1);
-        
+
         sorter = new TableRowSorter(modelo1);
         jTable1.setRowSorter(sorter);
-       
+
     }
 
     /**
@@ -46,6 +50,9 @@ public class AlumnosForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         labelClose = new javax.swing.JLabel();
@@ -57,6 +64,40 @@ public class AlumnosForm extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         btnRegistrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+
+        jDialog1.setTitle("Operación en proceso");
+
+        jPanel3.setBackground(new java.awt.Color(44, 62, 80));
+
+        jProgressBar1.setMaximum(1000);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(187, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(44, 62, 80));
@@ -170,7 +211,7 @@ public class AlumnosForm extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +238,7 @@ public class AlumnosForm extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(73, 73, 73)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
                     .addComponent(btnRegistrar))
@@ -229,7 +270,7 @@ public class AlumnosForm extends javax.swing.JFrame {
     }//GEN-LAST:event_labelCloseMouseClicked
 
     private void labelMinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMinMouseClicked
- 
+
     }//GEN-LAST:event_labelMinMouseClicked
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -245,50 +286,53 @@ public class AlumnosForm extends javax.swing.JFrame {
     }//GEN-LAST:event_labelRegisterMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-       RegisterAlumnoForm raf= new RegisterAlumnoForm();
-       raf.setVisible(true);
-       raf.pack();
-       raf.setLocationRelativeTo(null);
-       this.dispose();
+        RegisterAlumnoForm raf = new RegisterAlumnoForm();
+        raf.setVisible(true);
+        raf.pack();
+        raf.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int i = jTable1.getSelectedRow();
-        
-        String nombre = jTable1.getValueAt(i,0).toString(); //nombre del producto (fila, columna)
-         String apellido = jTable1.getValueAt(i,1).toString();
-         Alumno alumno = new Alumno();
-         Conector con = new Conector();
-         con.connect();
-      
-         alumno=con.buscaAlumno(nombre, apellido);
-         String path = con.readPicture(alumno.getId(),"imagen.png");
-          jLabel2.removeAll();
-         jLabel2.setIcon(null);
- 
-         retardo(5);
-         System.out.println("path "+path);
-         con.close();
- 
-         ImageIcon icon = new ImageIcon (path);      
-         icon.getImage().flush();
+
+        String nombre = jTable1.getValueAt(i, 0).toString(); //nombre del producto (fila, columna)
+        String apellido = jTable1.getValueAt(i, 1).toString();
+        Alumno alumno = new Alumno();
+        Conector con = new Conector();
+        con.connect();
+
+        alumno = con.buscaAlumno(nombre, apellido);
+        String path = con.readPicture(alumno.getId(), "imagen.png");
+        jLabel2.removeAll();
+        jLabel2.setIcon(null);
+
+        retardo(5);
+        System.out.println("path " + path);
+        con.close();
+
+        ImageIcon icon = new ImageIcon(path);
+        icon.getImage().flush();
+        //jDialog1.setVisible(false);
         jLabel2.setIcon(icon);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    public void retardo ( int timeToWait){
-     
-        System.out.print("retardo");
+    public void retardo(int timeToWait) {
+         System.out.print("retardo");
         try {
-            for (int i=0; i<timeToWait ; i++) {
+            for (int i = 0; i < timeToWait; i++) {              
                 Thread.sleep(1000);
-                System.out.print(".");
+               
+                System.out.print(" . ");
+            
+                
             }
-        } catch (InterruptedException ie)
-        {
+        } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
-    
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -327,10 +371,13 @@ public class AlumnosForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelClose;

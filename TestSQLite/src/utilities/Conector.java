@@ -32,8 +32,8 @@ public class Conector {
 
    
  // String url="/Users/erandi/GitHub/SWING/SQLite/sistemaRegistroBD.db"; //mac
-    //String url="/home/erandi/Documentos/erandi/SWING/SQLite/sistemaRegistroBD.db"; //cenac
-  String url = "/home/erandi/Documents/SWING/SQLite/sistemaRegistroBD.db";  //cic-cubo
+    String url="/home/erandi/Documentos/erandi/SWING/SQLite/sistemaRegistroBD.db"; //cenac
+  //String url = "/home/erandi/Documents/SWING/SQLite/sistemaRegistroBD.db";  //cic-cubo
 
     // String url = "C:\\Users\\erand\\Documents\\CursoDiplomanoJava_SWING\\SWING\\SQLite\\pruebaBD.db";
     Connection connect;
