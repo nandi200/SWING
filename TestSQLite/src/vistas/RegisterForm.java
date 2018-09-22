@@ -50,7 +50,7 @@ public class RegisterForm extends javax.swing.JFrame {
         labelPassword = new javax.swing.JPasswordField();
         btnRegistrar = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        labelRegister = new javax.swing.JLabel();
+        labelRegresarInicio = new javax.swing.JLabel();
         labelApellido = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JTextField();
@@ -158,13 +158,13 @@ public class RegisterForm extends javax.swing.JFrame {
             }
         });
 
-        labelRegister.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
-        labelRegister.setForeground(new java.awt.Color(236, 240, 241));
-        labelRegister.setText("Regresar al inicio");
-        labelRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelRegresarInicio.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
+        labelRegresarInicio.setForeground(new java.awt.Color(236, 240, 241));
+        labelRegresarInicio.setText("Regresar al inicio");
+        labelRegresarInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelRegresarInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelRegisterMouseClicked(evt);
+                labelRegresarInicioMouseClicked(evt);
             }
         });
 
@@ -264,7 +264,7 @@ public class RegisterForm extends javax.swing.JFrame {
             .addGap(54, 54, 54))
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelRegister)
+            .addComponent(labelRegresarInicio)
             .addGap(191, 191, 191))
     );
     jPanel2Layout.setVerticalGroup(
@@ -311,7 +311,7 @@ public class RegisterForm extends javax.swing.JFrame {
                 .addComponent(btnRegistrar)
                 .addComponent(btnCancel))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(labelRegister)
+            .addComponent(labelRegresarInicio)
             .addContainerGap())
     );
 
@@ -388,14 +388,14 @@ public class RegisterForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void labelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegisterMouseClicked
+    private void labelRegresarInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegresarInicioMouseClicked
         LoginForm lgf = new LoginForm();
         lgf.setVisible(true);
         lgf.pack();
         lgf.setLocationRelativeTo(null);
         this.dispose();
 
-    }//GEN-LAST:event_labelRegisterMouseClicked
+    }//GEN-LAST:event_labelRegresarInicioMouseClicked
 
     private void labelApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelApellidoActionPerformed
         // TODO add your handling code here:
@@ -462,7 +462,7 @@ public class RegisterForm extends javax.swing.JFrame {
     private javax.swing.JTextField labelNombre;
     private javax.swing.JPasswordField labelPassword;
     private javax.swing.JPasswordField labelPassword2;
-    private javax.swing.JLabel labelRegister;
+    private javax.swing.JLabel labelRegresarInicio;
     private javax.swing.JTextField labelUsuario;
     private javax.swing.JTextArea textDireccion;
     // End of variables declaration//GEN-END:variables

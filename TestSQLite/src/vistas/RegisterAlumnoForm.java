@@ -67,7 +67,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
         textNombre = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        labelRegister = new javax.swing.JLabel();
+        labelRegresar = new javax.swing.JLabel();
         textApellido = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -118,7 +118,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelMin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelClose)
@@ -177,13 +177,13 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
             }
         });
 
-        labelRegister.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
-        labelRegister.setForeground(new java.awt.Color(236, 240, 241));
-        labelRegister.setText("Regresar inicio");
-        labelRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelRegresar.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
+        labelRegresar.setForeground(new java.awt.Color(236, 240, 241));
+        labelRegresar.setText("Regresar inicio");
+        labelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelRegisterMouseClicked(evt);
+                labelRegresarMouseClicked(evt);
             }
         });
 
@@ -216,53 +216,12 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(236, 240, 241));
         jLabel11.setText("Fecha Nacimiento:");
 
-        dateNacimiento.setCurrentView(new datechooser.view.appearance.AppearancesList("Grey",
-            new datechooser.view.appearance.ViewAppearance("custom",
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
-                    new java.awt.Color(0, 0, 0),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
-                    new java.awt.Color(0, 0, 0),
-                    new java.awt.Color(0, 0, 255),
-                    true,
-                    true,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
-                    new java.awt.Color(0, 0, 255),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
-                    new java.awt.Color(128, 128, 128),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
-                    new java.awt.Color(0, 0, 0),
-                    new java.awt.Color(0, 0, 255),
-                    false,
-                    true,
-                    new datechooser.view.appearance.swing.LabelPainter()),
-                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Lucida Grande", java.awt.Font.PLAIN, 13),
-                    new java.awt.Color(0, 0, 0),
-                    new java.awt.Color(255, 0, 0),
-                    false,
-                    false,
-                    new datechooser.view.appearance.swing.ButtonPainter()),
-                (datechooser.view.BackRenderer)null,
-                false,
-                true)));
-    dateNacimiento.setAutoScroll(false);
-    try {
-        dateNacimiento.setDefaultPeriods(new datechooser.model.multiple.PeriodSet(new datechooser.model.multiple.Period(new java.util.GregorianCalendar(2018, 8, 14),
-            new java.util.GregorianCalendar(2018, 8, 14))));
-} catch (datechooser.model.exeptions.IncompatibleDataExeption e1) {
-    e1.printStackTrace();
+        dateNacimiento.setAutoScroll(false);
+        try {
+            dateNacimiento.setDefaultPeriods(new datechooser.model.multiple.PeriodSet(new datechooser.model.multiple.Period(new java.util.GregorianCalendar(2018, 8, 14),
+                new java.util.GregorianCalendar(2018, 8, 14))));
+    } catch (datechooser.model.exeptions.IncompatibleDataExeption e1) {
+        e1.printStackTrace();
     }
     dateNacimiento.setLocale(new java.util.Locale("es", "", ""));
 
@@ -277,7 +236,6 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
 
     cmbEdad.setBackground(new java.awt.Color(108, 122, 137));
     cmbEdad.setForeground(new java.awt.Color(228, 241, 254));
-    cmbEdad.setOpaque(true);
 
     cmbGrado.setBackground(new java.awt.Color(108, 122, 137));
     cmbGrado.setForeground(new java.awt.Color(228, 241, 254));
@@ -320,7 +278,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelRegister)
+            .addComponent(labelRegresar)
             .addGap(191, 191, 191))
         .addGroup(jPanel2Layout.createSequentialGroup()
             .addContainerGap()
@@ -337,18 +295,16 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
                     .addGap(46, 46, 46))))
         .addGroup(jPanel2Layout.createSequentialGroup()
             .addGap(17, 17, 17)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(btnAgregarImg, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(54, 54, 54))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(71, 71, 71)
-                    .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(149, Short.MAX_VALUE))))
+            .addComponent(btnAgregarImg, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(71, 71, 71)
+            .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(149, Short.MAX_VALUE))
+        .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(54, 54, 54))
     );
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,7 +352,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
                 .addComponent(btnRegistrar)
                 .addComponent(btnCancel))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(labelRegister)
+            .addComponent(labelRegresar)
             .addGap(18, 18, 18))
     );
 
@@ -404,10 +360,10 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGroup(layout.createSequentialGroup()
-            .addGap(1, 1, 1)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,13 +440,13 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
         dateNacimiento.setSelectedDate(c);
         buttonGroup1.clearSelection();
     }
-    private void labelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegisterMouseClicked
+    private void labelRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegresarMouseClicked
         AlumnosForm af = new AlumnosForm();
         af.setVisible(true);
         af.pack();
         af.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_labelRegisterMouseClicked
+    }//GEN-LAST:event_labelRegresarMouseClicked
 
     private void textApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textApellidoActionPerformed
         // TODO add your handling code here:
@@ -502,8 +458,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
 
     private void btnAgregarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarImgActionPerformed
         JFileChooser fc = new JFileChooser();
-//...
-// Response to button click
+
         int retVal = fc.showOpenDialog(this);
         if (retVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
@@ -575,7 +530,7 @@ public class RegisterAlumnoForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelClose;
     private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelMin;
-    private javax.swing.JLabel labelRegister;
+    private javax.swing.JLabel labelRegresar;
     private javax.swing.JRadioButton rbtBeca;
     private javax.swing.JTextField textApellido;
     private javax.swing.JTextField textNombre;
