@@ -7,6 +7,8 @@ package vistas;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Alumno;
@@ -22,19 +24,19 @@ public class AlumnosForm extends javax.swing.JFrame {
     //modelo que contendra los datos de los alumnos
     DefaultTableModel modelo1 = new DefaultTableModel();
     //ordenador de filas para la  tabla
-    TableRowSorter sorter ;
-    
+    TableRowSorter sorter;
+
     public AlumnosForm() {
         initComponents();
-          this.setLocationRelativeTo(null); //centra el form
-          
+        this.setLocationRelativeTo(null); //centra el form
+
         Carga datos = new Carga();
-        modelo1=datos.cargaAlumnos();
+        modelo1 = datos.cargaAlumnos();
         jTable1.setModel(modelo1);
-        
+
         sorter = new TableRowSorter(modelo1);
         jTable1.setRowSorter(sorter);
-       
+
     }
 
     /**
@@ -52,11 +54,12 @@ public class AlumnosForm extends javax.swing.JFrame {
         labelMin = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnModificar = new javax.swing.JButton();
-        labelRegister = new javax.swing.JLabel();
+        labelSalir = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnRegistrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(44, 62, 80));
@@ -97,7 +100,7 @@ public class AlumnosForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 583, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelMin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelClose)
@@ -127,13 +130,13 @@ public class AlumnosForm extends javax.swing.JFrame {
             }
         });
 
-        labelRegister.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
-        labelRegister.setForeground(new java.awt.Color(236, 240, 241));
-        labelRegister.setText("Salir de la aplicación");
-        labelRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelSalir.setFont(new java.awt.Font("Cantarell", 1, 12)); // NOI18N
+        labelSalir.setForeground(new java.awt.Color(236, 240, 241));
+        labelSalir.setText("Salir de la aplicación");
+        labelSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelRegisterMouseClicked(evt);
+                labelSalirMouseClicked(evt);
             }
         });
 
@@ -165,27 +168,41 @@ public class AlumnosForm extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(254, 95, 22));
+        btnEliminar.setFont(new java.awt.Font("Cabin", 1, 14)); // NOI18N
+        btnEliminar.setForeground(java.awt.Color.white);
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(182, 182, 182))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(332, 332, 332)
-                .addComponent(labelRegister)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(332, 332, 332)
+                                .addComponent(labelSalir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)))
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(66, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,9 +217,10 @@ public class AlumnosForm extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
+                    .addComponent(btnEliminar)
                     .addComponent(btnRegistrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelRegister)
+                .addComponent(labelSalir)
                 .addGap(16, 16, 16))
         );
 
@@ -229,66 +247,103 @@ public class AlumnosForm extends javax.swing.JFrame {
     }//GEN-LAST:event_labelCloseMouseClicked
 
     private void labelMinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMinMouseClicked
- 
+        this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_labelMinMouseClicked
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 
+        int i = -1;
+        i = jTable1.getSelectedRow();
+        if (i != -1) {
+            jTable1.getSelectedRow();
+
+            String nombre = jTable1.getValueAt(i, 0).toString(); //nombre del producto (fila, columna)
+            String apellido = jTable1.getValueAt(i, 1).toString();
+
+            ModifyForm mof = new ModifyForm(nombre, apellido);
+            mof.setVisible(true);
+            mof.pack();
+            mof.setLocationRelativeTo(null);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Seleccionar una fila", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void labelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegisterMouseClicked
+    private void labelSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalirMouseClicked
         LoginForm lgf = new LoginForm();
         lgf.setVisible(true);
         lgf.pack();
         lgf.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_labelRegisterMouseClicked
+    }//GEN-LAST:event_labelSalirMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-       RegisterAlumnoForm raf= new RegisterAlumnoForm();
-       raf.setVisible(true);
-       raf.pack();
-       raf.setLocationRelativeTo(null);
-       this.dispose();
+        RegisterAlumnoForm raf = new RegisterAlumnoForm();
+        raf.setVisible(true);
+        raf.pack();
+        raf.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int i = jTable1.getSelectedRow();
-        
-        String nombre = jTable1.getValueAt(i,0).toString(); //nombre del producto (fila, columna)
-         String apellido = jTable1.getValueAt(i,1).toString();
-         Alumno alumno = new Alumno();
-         Conector con = new Conector();
-         con.connect();
-      
-         alumno=con.buscaAlumno(nombre, apellido);
-         String path = con.readPicture(alumno.getId(),"imagen.png");
-          jLabel2.removeAll();
-         jLabel2.setIcon(null);
- 
-         retardo(5);
-         System.out.println("path "+path);
-         con.close();
- 
-         ImageIcon icon = new ImageIcon (path);      
-         icon.getImage().flush();
+
+        String nombre = jTable1.getValueAt(i, 0).toString(); //nombre del producto (fila, columna)
+        String apellido = jTable1.getValueAt(i, 1).toString();
+        Alumno alumno = new Alumno();
+        Conector con = new Conector();
+        con.connect();
+
+        alumno = con.buscaAlumno(nombre, apellido);
+        String path = con.readPicture(alumno.getId(), "imagen.png");
+        jLabel2.removeAll();
+        jLabel2.setIcon(null);
+
+        retardo(3);
+        System.out.println("path " + path);
+        con.close();
+
+        ImageIcon icon = new ImageIcon(path);
+        icon.getImage().flush();
         jLabel2.setIcon(icon);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    public void retardo ( int timeToWait){
-     
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int i = -1;
+        i = jTable1.getSelectedRow();
+        if (i != -1) {
+            String nombre = jTable1.getValueAt(i, 0).toString(); //nombre del producto (fila, columna)
+            String apellido = jTable1.getValueAt(i, 1).toString();
+            Alumno alumno = new Alumno();
+            Conector con = new Conector();
+            con.connect();
+            alumno = con.buscaAlumno(nombre, apellido);
+            con.borrarAlumno(alumno.getId());
+            con.close();
+              JOptionPane.showMessageDialog(null, "Alumno eliminado", "Alumno", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Seleccionar una fila", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    public void retardo(int timeToWait) {
+
         System.out.print("retardo");
         try {
-            for (int i=0; i<timeToWait ; i++) {
+            for (int i = 0; i < timeToWait; i++) {
                 Thread.sleep(1000);
                 System.out.print(".");
             }
-        } catch (InterruptedException ie)
-        {
+        } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
-    
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -325,6 +380,7 @@ public class AlumnosForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
@@ -335,6 +391,6 @@ public class AlumnosForm extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelClose;
     private javax.swing.JLabel labelMin;
-    private javax.swing.JLabel labelRegister;
+    private javax.swing.JLabel labelSalir;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,13 +21,6 @@ public class TestSQLite {
      */
     public static void main(String[] args) {
         
-      //  alumno.save();
-       // save();
-     //   consultDatos();
-     //   consultScore(10);
-     //   updateAlumno(10,"era",7.5);
-      //  deleteAlumno("era");
-      updatePicture("Atxy2k","/home/erandi/Documents/SWING/TestSQLite/src/image/farmacy2.png");
         consultDatos();
       
     }
@@ -75,7 +68,7 @@ public class TestSQLite {
         con.close();
   }
   
-    public static void deleteAlumno(String nombre){
+    public static void deleteAlumno(Integer nombre){
        Conector con = new Conector();
         con.connect();
        boolean result=false;
@@ -88,7 +81,7 @@ public class TestSQLite {
         con.close();
   }
     
-    public static void  updatePicture(String name,String fileName){
+    public static void  updatePicture(Integer name,String fileName){
          Conector con = new Conector();
         con.connect();
        con.updatePicture(name,fileName);

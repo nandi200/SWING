@@ -204,17 +204,17 @@ public class Conector {
         return resul;
     }
 
-    public boolean borrarAlumno(String name) {
+    public boolean borrarAlumno(Integer id) {
 
         boolean resul = false;
         try {
             String sql = "DELETE FROM Alumnos "
-                    + " WHERE Nombre = ?";
+                    + " WHERE id = ?";
 
             PreparedStatement st = connect.prepareStatement(sql);
 
             // set the value
-            st.setString(1, name);
+            st.setInt(1, id);
             st.executeUpdate();
             resul = true;
 
@@ -233,18 +233,19 @@ public class Conector {
      * @param nombre
      * @param filename
      */
-    public void updatePicture(String nombre, String filename) {
+    
+    public void updatePicture(Integer id, String filename) {
         try {
             // update sql
             String updateSQL = "UPDATE Alumnos "
                     + "SET imagen = ? "
-                    + "WHERE nombre=?";
+                    + "WHERE id=?";
 
             PreparedStatement pstmt = connect.prepareStatement(updateSQL);
             ImageBlob img = new ImageBlob();    
             // set parameters
             pstmt.setBytes(1, img.readFile(filename));
-            pstmt.setString(2, nombre);
+            pstmt.setInt(2, id);
 
             pstmt.executeUpdate();
             System.out.println("Se almaceno un archivo BLOB en la tabla Alumnos.");
